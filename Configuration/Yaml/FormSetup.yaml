@@ -1,0 +1,88 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+
+          # Setup Formelements in Backend:
+          formEditor:
+
+            # For display in the backend: Register JS files/modules that are integrated via requireJS
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                1712745318785: 'TYPO3/CMS/PowerCaptcha/Backend/FormEditor/PowerCaptchaViewModel'
+            
+            # For display in the backend: which fluid template to use?
+            formEditorPartials:
+              FormElement-PowerCaptcha: 'Stage/SimpleTemplate'
+
+          
+          formElementsDefinition:
+
+            # For frontend output: Additional paths needed for rendering the field
+            Form:
+              renderingOptions:
+                # templateRootPaths:
+                #  1712745318785: 'EXT:power_captcha/Resources/Private/FormFramework/Templates/'
+                partialRootPaths:
+                  1712745318785: 'EXT:power_captcha/Resources/Private/FormFramework/Partials/'
+                # layoutRootPaths:
+                #  1712745318785: 'EXT:power_captcha/Resources/Private/FormFramework/Layouts/'
+
+
+            # Display of the form fields in the backend
+            # Form Field Detail view (in the right column)
+
+            PowerCaptcha:
+              
+              implementationClassName: 'TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement'
+
+              # Headline (appears as a title in the overview and above the form)
+              formEditor:
+                label: 'POWER CAPTCHA'
+                group: custom
+                groupSorting: 1010
+
+                # Icon is registered in the Icons.php
+                iconIdentifier: 'power-captcha-icon'
+                
+                propertyCollections:
+                  validators:
+                    10:
+                      identifier: 'PowerCaptcha'
+                      editors:
+                        100:
+                          identifier: 'header'
+                          templateName: 'Inspector-CollectionElementHeaderEditor'
+                          label: 'POWER CAPTCHA Validator'
+
+                # Defaults for the form fields
+                predefinedDefaults:
+                  validators:
+                    -
+                      identifier: 'PowerCaptcha'
+                  # properties:
+                  #   test: ''
+
+
+                editors:
+                  100:
+                    identifier: label
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.FormElement.editor.label.label
+                    propertyPath: label
+                  900:
+                    identifier: 'validators'
+                    templateName: 'Inspector-ValidatorsEditor'
+                    label: 'formEditor.elements.TextMixin.editor.validators.label'
+                    selectOptions:
+                      10:
+                        value: 'PowerCaptcha'
+
+          # Define custom validator
+          validatorsDefinition:
+            PowerCaptcha:
+              implementationClassName: 'PowerCaptcha\Typo3\FormValidator\FormValidator'
+              formEditor:
+                iconIdentifier: 'form-validator'
+                label: 'POWER CAPTCHA Validator'

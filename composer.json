@@ -1,0 +1,21 @@
+{
+    "name": "power-captcha/integration-typo3",
+    "description": "POWER CAPTCHA protects your TYPO3 website against bots and unauthorized persons. GDPR compliant!",
+    "type": "typo3-cms-extension",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-core": "^11.5 || ^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PowerCaptcha\\Typo3\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "power_captcha"
+        }
+    }
+}

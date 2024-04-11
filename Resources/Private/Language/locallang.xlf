@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" date="2024-04-11T12:13:05+01:00">
+		<body>
+			<!-- Site Configuration -->
+			<trans-unit id="site.configuration.tab">
+				<source>POWER CAPTCHA</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.api_key">
+				<source>API Key (mandatory)</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.api_key.description">
+				<source>Enter your POWER CAPTCHA API Key. You can find your API Key in the API Key Management on power-captcha.com.</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.secret_key">
+				<source>Secret Key (mandatory)</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.secret_key.description">
+				<source>Enter your POWER CAPTCHA Secret Key. You can find your Secret Key in the API Key Management  on power-captcha.com.</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.endpoint_base_url">
+				<source>Endpoint base URL (optional)</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.endpoint_base_url.description">
+				<source>Only needed if you have an on-premises version with self-hosted POWER CAPTCHA endpoint.</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.javascript_base_url">
+				<source>JavaScript base URL (optional)</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.javascript_base_url.description">
+				<source>Only needed if you have an on-premises version with self-hosted POWER CAPTCHA JavaScript.</source>
+			</trans-unit>
+			
+			<!-- Frontend -->
+		</body>
+	</file>
+</xliff>
