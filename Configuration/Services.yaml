@@ -5,4 +5,6 @@ services:
     public: false
   PowerCaptcha\Typo3\:
     resource: '../Classes/*'
-    exclude: '../Classes/Domain/Model/*'
+  PowerCaptcha\Typo3\Service\TokenVerification:
+    public: true
+    shared: false

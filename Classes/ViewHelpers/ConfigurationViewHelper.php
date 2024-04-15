@@ -13,13 +13,17 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 class ConfigurationViewHelper extends AbstractViewHelper {
 	use CompileWithRenderStatic;
 
-	public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
+	public static function renderStatic(
+        array $arguments, 
+        \Closure $renderChildrenClosure, 
+        RenderingContextInterface $renderingContext
+    ) {
 		$configuration = new Configuration();
 
 		// pass configuration variables to view
 		return [
             'enabled' => $configuration->isEnabled(),
-            'clientUid' => hash('sha256', $_SERVER['REMOTE_ADDR']),
+            'clientUid' => $configuration->getClientUid(),
             'lang' => self::getLang(),
 			'apiKey' => $configuration->getApiKey(),
             'endpointUrl' => $configuration->getTokenRequestUrl(),

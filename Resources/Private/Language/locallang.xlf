@@ -30,8 +30,31 @@
 			<trans-unit id="site.configuration.javascript_base_url.description">
 				<source>Only needed if you have an on-premises version with self-hosted POWER CAPTCHA JavaScript.</source>
 			</trans-unit>
-			
+
 			<!-- Frontend -->
+			<trans-unit id="message.blocked">
+				<source>Submission of the form was blocked by POWER CAPTCHA. Please try again later.</source>
+			</trans-unit>
+
+			<!-- Error Codes -->
+			<trans-unit id="message.error.no_token_field">
+				<source>The form does not contain a token field.</source>
+			</trans-unit>
+			<trans-unit id="message.error.missing_token">
+				<source>The token is empty.</source>
+			</trans-unit>
+			<trans-unit id="message.error.token_not_verified">
+				<source>The token has not been verified.</source>
+			</trans-unit>
+			<trans-unit id="message.error.invalid_secret">
+				<source>The secret key is missing or invalid.</source>
+			</trans-unit>
+			<trans-unit id="message.error.invalid_token">
+				<source>The token is invalid.</source>
+			</trans-unit>
+			<trans-unit id="message.error.api_error">
+				<source>Error connecting to the API. API Key maybe invalid.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

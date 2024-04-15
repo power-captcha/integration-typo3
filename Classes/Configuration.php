@@ -9,9 +9,11 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 
 class Configuration
 {
-    public const DEFAULT_ENDPOINT_BASE_URL = 'https://api.power-captcha.com';
-    public const DEFAULT_JAVASCRIPT_BASE_URL = 'https://cdn.power-captcha.com';
+    public const TOKEN_FIELD_NAME = 'pc-token';
 
+    private const DEFAULT_ENDPOINT_BASE_URL = 'https://api.power-captcha.com';
+    private const DEFAULT_JAVASCRIPT_BASE_URL = 'https://cdn.power-captcha.com';
+    
     private const API_VERSION = 'v1';
     private const JS_VERSION = '1.1.0';
 
@@ -33,6 +35,10 @@ class Configuration
         $this->secretKey = trim($siteConfiguration['power_captcha_secret_key'] ?? '');
         $this->endpointBaseUrl = trim($siteConfiguration['power_captcha_endpoint_base_url'] ?? '');
         $this->javascriptBaseUrl = trim($siteConfiguration['power_captcha_javascript_base_url'] ?? '');
+    }
+
+    public function getClientUid() {
+        return hash('sha256', $_SERVER['REMOTE_ADDR']);
     }
 
     public function isEnabled() : bool {
