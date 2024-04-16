@@ -1,0 +1,4 @@
+# Add POWER CAPTCHA field
+tx_powermail.flexForm.type.addFieldOptions {
+  power_captcha = POWER CAPTCHA
+}

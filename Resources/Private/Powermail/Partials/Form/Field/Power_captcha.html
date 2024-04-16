@@ -1,0 +1,78 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:powercaptcha="http://typo3.org/ns/PowerCaptcha/Typo3/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <f:variable name="conf" value="{powercaptcha:configuration()}" />
+
+    <f:if condition="{conf.enabled}">
+        <f:then>
+            <f:asset.script defer="1" async="1" identifier="powercaptcha" src="<f:format.htmlspecialchars>{conf.javascriptUrl}</f:format.htmlspecialchars>" />
+            <script>
+                function awaitPowerCaptcha(callbackFn) {
+                    const readyCheck = () => {
+                        if (window['uiiCaptcha'] !== undefined) {
+                            clearInterval(checkInterval);
+                            callbackFn(window['uiiCaptcha']);
+                        }
+                    };
+                    const checkInterval = setInterval(readyCheck, 200);
+                }
+
+                document.addEventListener('DOMContentLoaded', function () {
+
+                    const clientUid = '<f:format.htmlspecialchars>{conf.clientUid}</f:format.htmlspecialchars>';
+                    const endpointUrl = '<f:format.htmlspecialchars>{conf.endpointUrl}</f:format.htmlspecialchars>';
+                    const apiKey = '<f:format.htmlspecialchars>{conf.apiKey}</f:format.htmlspecialchars>';
+                    const lang = '<f:format.htmlspecialchars>{conf.lang}</f:format.htmlspecialchars>';
+
+                    awaitPowerCaptcha((powerCaptcha) => {
+
+                        document.querySelectorAll('.powermail_form').forEach((form, i) => {  // TODO or .powercaptcha-typo3-powermail
+                            
+                            console.log('power mail form ', i, ':', form);
+
+                            const formSubmitButton = form.querySelector('[type="submit"]');
+                            
+                            // append hidden input for token
+                            const tokenField = document.createElement("input");
+                            tokenField.name = "pc-token";
+                            tokenField.type = "hidden";
+                            form.appendChild(tokenField);
+
+                            // create captcha instance for each form
+                            const captchaInstance = powerCaptcha.captcha({lang: lang});
+                            
+                            form.addEventListener('submit', event => {
+                                if(tokenField.value === "") {
+                                    console.debug('pc-token field empty. preventing form submit and requesting token.');
+                                    event.preventDefault();
+
+                                    // requesting token
+                                    captchaInstance.check({
+                                        apiKey: apiKey,
+                                        backendUrl: endpointUrl,
+                                        clientUid: clientUid,
+                                        callback: ''
+                                    }, 
+                                    function(token) {
+                                        console.debug('captcha solved with token: '+token+'. setting value to tokenField.');
+                                        tokenField.value = token;
+                                        console.debug('resubmitting form.');
+                                        if(formSubmitButton) {
+                                            formSubmitButton.click();
+                                        } else {
+                                            form.submit();
+                                        }
+                                    });
+                                } else {
+                                    console.debug('pc-token already set. no token has to be requested. powermail form can be submitted.');
+                                }
+                            });
+                        });
+                    });
+                });
+            </script>
+        </f:then>
+    </f:if>
+
+</html>

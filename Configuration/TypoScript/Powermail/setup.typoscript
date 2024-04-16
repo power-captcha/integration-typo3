@@ -1,0 +1,37 @@
+plugin.tx_powermail {
+    # Add POWER CAPTCHA field paths
+    view {
+		templateRootPaths {
+		}
+		partialRootPaths {
+			1713268685 = EXT:power_captcha/Resources/Private/Powermail/Partials
+		}
+		layoutRootPaths {
+		}
+	}
+
+    # Add POWER CAPTCHA validator for Powermail 10.x and lower
+    settings.setup.validators {
+        1713268685 {
+            class = PowerCaptcha\Typo3\PowermailValidator\PowermailV10Validator
+            config {
+                # Workaround for https://github.com/in2code-de/powermail/pull/941
+                dummy = 1
+            }
+        }
+    }
+}
+
+# True, if the current TYPO3 version is 12.4.x
+[compatVersion("12.4")] 
+    # Add POWER CAPTCHA validator for Powermail 12.x
+    plugin.tx_powermail.settings.setup.validators {
+        1713268685 {
+            class = PowerCaptcha\Typo3\PowermailValidator\PowermailV12Validator
+            config {
+                # Workaround for https://github.com/in2code-de/powermail/pull/941
+                dummy = 1
+            }
+        }
+    }
+[global]

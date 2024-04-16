@@ -7,4 +7,3 @@ services:
     resource: '../Classes/*'
   PowerCaptcha\Typo3\Service\TokenVerification:
     public: true
-    shared: false
