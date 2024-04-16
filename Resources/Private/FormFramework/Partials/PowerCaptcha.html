@@ -18,19 +18,17 @@
 						additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
 					/>
 					<script>
-                        function withPowerCaptcha(callback) {
+                        function awaitPowerCaptcha(callbackFn) {
 							const readyCheck = () => {
 								if (window['uiiCaptcha'] !== undefined) {
 									clearInterval(checkInterval);
-									callback(window['uiiCaptcha']);
+									callbackFn(window['uiiCaptcha']);
 								}
 							};
 							const checkInterval = setInterval(readyCheck, 200);
 						}
 
 						document.addEventListener('DOMContentLoaded', function () {
-
-                            // TODO username field
 
                             const fieldId = '<f:format.htmlspecialchars>{element.uniqueIdentifier}</f:format.htmlspecialchars>';
                             const form = document.getElementById(fieldId).closest('form');
@@ -48,21 +46,18 @@
                             form.appendChild(tokenField);
 
                             // create captcha instance
-                            withPowerCaptcha((powerCaptcha) => {
+                            awaitPowerCaptcha((powerCaptcha) => {
                                 const captchaInstance = powerCaptcha.captcha({idSuffix: fieldId, lang: lang});
                                 form.addEventListener('submit', event => {
                                     if(tokenField.value === "") {
                                         console.debug('pc-token field empty. preventing form submit and requesting token.');
                                         event.preventDefault();
 
-                                        // TODO username field validation
-
                                         // requesting token
                                         captchaInstance.check({
                                             apiKey: apiKey,
                                             backendUrl: endpointUrl,
                                             clientUid: clientUid,
-                                            // user: userName,
                                             callback: ''
                                         }, 
                                         function(token) {
