@@ -45,3 +45,6 @@ https://github.com/studiomitte/friendlycaptcha-typo3/
 
 CaptchaEU:
 https://github.com/captcha-eu/typo3/
+
+Powermail Field example:
+https://github.com/einpraegsam/powermailextended
