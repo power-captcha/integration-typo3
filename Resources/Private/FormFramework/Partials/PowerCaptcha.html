@@ -29,11 +29,12 @@
 						}
 
 						document.addEventListener('DOMContentLoaded', function () {
-                            
+
                             // TODO username field
 
                             const fieldId = '<f:format.htmlspecialchars>{element.uniqueIdentifier}</f:format.htmlspecialchars>';
                             const form = document.getElementById(fieldId).closest('form');
+                            const formSubmitButton = form.querySelector('[type="submit"]');
 
                             const clientUid = '<f:format.htmlspecialchars>{conf.clientUid}</f:format.htmlspecialchars>';
                             const endpointUrl = '<f:format.htmlspecialchars>{conf.endpointUrl}</f:format.htmlspecialchars>';
@@ -45,7 +46,7 @@
                             tokenField.name = "pc-token";
                             tokenField.type = "hidden";
                             form.appendChild(tokenField);
-                            
+
                             // create captcha instance
                             withPowerCaptcha((powerCaptcha) => {
                                 const captchaInstance = powerCaptcha.captcha({idSuffix: fieldId, lang: lang});
@@ -55,7 +56,7 @@
                                         event.preventDefault();
 
                                         // TODO username field validation
-                                        
+
                                         // requesting token
                                         captchaInstance.check({
                                             apiKey: apiKey,
@@ -68,7 +69,11 @@
                                             console.debug('captcha solved with token: '+token+'. setting value to tokenField.');
                                             tokenField.value = token;
                                             console.debug('resubmitting form.');
-                                            form.submit();
+                                            if(formSubmitButton) {
+                                                formSubmitButton.click();
+                                            } else {
+                                                form.submit();
+                                            }
                                         });
                                     } else {
                                         console.debug('pc-token already set. no token has to be requested. wcLoginForm can be submitted.');
