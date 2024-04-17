@@ -40,13 +40,14 @@ class TokenVerification {
 
         if(is_null($token)) {
             $token = $this->getTokenFromRequest();
-            if(empty($token)) {
+            if($token === false) {
                 $this->logger->error('Request does not contain a token field.');
                 $result->setErrorCode(ErrorCode::NO_TOKEN_FIELD);
                 return $result;
             }
-        } else if(empty($token)) { 
-            // token was passed as parameter
+        }
+        
+        if(empty($token)) { 
             $this->logger->warning('Could not verify token because it was empty.');
             $result->setErrorCode(ErrorCode::MISSING_TOKEN);
             return $result;
@@ -112,16 +113,16 @@ class TokenVerification {
         }
     }
 
-    protected function getTokenFromRequest() : string {
+    protected function getTokenFromRequest() : string | bool {
         /** @var ServerRequest $request */
         $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         if (!$request) {
-            return '';
+            return false;
         }
         return 
             $request->getParsedBody()[$this->configuration::TOKEN_FIELD_NAME] 
             ?? $request->getQueryParams()[$this->configuration::TOKEN_FIELD_NAME] 
-            ?? '';
+            ?? false;
     }
 
 }
