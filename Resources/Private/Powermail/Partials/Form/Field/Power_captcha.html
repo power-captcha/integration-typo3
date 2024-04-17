@@ -7,6 +7,7 @@
     <f:if condition="{conf.enabled}">
         <f:then>
             <f:asset.script defer="1" async="1" identifier="powercaptcha" src="<f:format.htmlspecialchars>{conf.javascriptUrl}</f:format.htmlspecialchars>" />
+            <div class="powercaptcha-typo3-powermail"></div>
             <script>
                 function awaitPowerCaptcha(callbackFn) {
                     const readyCheck = () => {
@@ -27,10 +28,9 @@
 
                     awaitPowerCaptcha((powerCaptcha) => {
 
-                        document.querySelectorAll('.powermail_form').forEach((form, i) => {  // TODO or .powercaptcha-typo3-powermail
-                            
-                            console.log('power mail form ', i, ':', form);
+                        document.querySelectorAll('.powermail_form .powercaptcha-typo3-powermail').forEach((elem, i) => {
 
+                            const form = elem.closest('form');
                             const formSubmitButton = form.querySelector('[type="submit"]');
                             
                             // append hidden input for token
@@ -39,8 +39,9 @@
                             tokenField.type = "hidden";
                             form.appendChild(tokenField);
 
+                            const randomUid = (Math.random().toString(36).substring(2, 10));
                             // create captcha instance for each form
-                            const captchaInstance = powerCaptcha.captcha({lang: lang});
+                            const captchaInstance = powerCaptcha.captcha({idSuffix: randomUid, lang: lang});
                             
                             form.addEventListener('submit', event => {
                                 if(tokenField.value === "") {
@@ -52,6 +53,7 @@
                                         apiKey: apiKey,
                                         backendUrl: endpointUrl,
                                         clientUid: clientUid,
+                                        user: '',
                                         callback: ''
                                     }, 
                                     function(token) {
