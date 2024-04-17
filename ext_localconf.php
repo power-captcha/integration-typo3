@@ -32,6 +32,15 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('powermail')) {
     );
 }
 
-
-
-// TODO logging (see https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/Logging/Configuration/Index.html)
+if(!isset($GLOBALS['TYPO3_CONF_VARS']['LOG']['PowerCaptcha']['writerConfiguration'])) {
+    // configure logging for PowerCaptcha
+    $GLOBALS['TYPO3_CONF_VARS']['LOG']['PowerCaptcha']['writerConfiguration'] = [
+        \TYPO3\CMS\Core\Log\LogLevel::INFO => [
+            // Add a FileWriter for loglevel INFO and above
+            \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
+                // Configuration for the writer (custom logfile infix)
+                'logFileInfix' => 'powercaptcha',
+            ],
+        ],
+    ];
+}

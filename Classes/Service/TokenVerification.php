@@ -84,7 +84,7 @@ class TokenVerification {
                 $this->logger->debug('Token successfully verified. Token: '.$token);
             } else {
                 $result->setErrorCode(ErrorCode::TOKEN_NOT_VERIFIED);
-                $this->logger->warning('Token was not verified. Token: '.$token);
+                $this->logger->info('Token was not verified. Token: '.$token);
             }
 
             return $result;
