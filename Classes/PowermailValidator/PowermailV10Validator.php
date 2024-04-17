@@ -53,27 +53,6 @@ class PowermailV10Validator extends AbstractPowermailValidator
         return;
     }
 
-    // /**
-    //  * Captcha check should be skipped on createAction if there was a confirmationAction where the captcha was
-    //  * already checked before
-    //  * Note: $this->flexForm is only available in powermail 3.9 or newer
-    //  */
-    // protected function isCaptchaCheckToSkip() : bool { // TODO what is this?
-    //     if (property_exists($this, 'flexForm')) {
-    //         $confirmationActive = $this->flexForm['settings']['flexform']['main']['confirmation'] === '1';
-    //         return $this->getActionName() === 'create' && $confirmationActive;
-    //     }
-    //     return false;
-    // }
-
-    // /**
-    //  * @return string "confirmation" or "create"
-    //  */
-    // protected function getActionName() : string {
-    //     $pluginVariables = GeneralUtility::_GPmerged('tx_powermail_pi1');
-    //     return $pluginVariables['action'];
-    // }
-
     private function getLanguageService() : LanguageService {
         return $GLOBALS['LANG'];
     }
