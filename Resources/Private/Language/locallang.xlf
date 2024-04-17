@@ -16,7 +16,7 @@
 				<source>Secret Key (mandatory)</source>
 			</trans-unit>
 			<trans-unit id="site.configuration.secret_key.description">
-				<source>Enter your POWER CAPTCHA Secret Key. You can find your Secret Key in the API Key Management  on power-captcha.com.</source>
+				<source>Enter your POWER CAPTCHA Secret Key. You can find your Secret Key in the API Key Management on power-captcha.com.</source>
 			</trans-unit>
 			<trans-unit id="site.configuration.endpoint_base_url">
 				<source>Endpoint base URL (optional)</source>
@@ -36,7 +36,7 @@
 				<source>Submission of the form was blocked by POWER CAPTCHA. Please try again later.</source>
 			</trans-unit>
 			<trans-unit id="message.disabled_missing_configuration">
-				<source>Warning: POWER CAPTCHA is disabled due to missing configuration! Please configure EXT:power_captcha or remove the field from this form.</source>
+				<source>Warning: POWER CAPTCHA is disabled due to missing configuration! Please configure POWER CAPTCHA or remove the field from this form.</source>
 			</trans-unit>
 
 			<!-- Error Codes -->
