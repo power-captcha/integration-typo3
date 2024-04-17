@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerCaptcha\Typo3;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
@@ -38,7 +39,7 @@ class Configuration
     }
 
     public function getClientUid() {
-        return hash('sha256', $_SERVER['REMOTE_ADDR']);
+        return hash('sha256', GeneralUtility::getIndpEnv('REMOTE_ADDR'));
     }
 
     public function isEnabled() : bool {
