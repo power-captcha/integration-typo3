@@ -79,6 +79,9 @@
                     </script>
                 </f:render>
             </f:then>
+            <f:else>
+                <p>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.disabled_missing_configuration')}</p>
+            </f:else>
 		</f:if>
 	</formvh:renderRenderable>
 </html>

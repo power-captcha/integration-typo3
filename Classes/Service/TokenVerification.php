@@ -32,6 +32,12 @@ class TokenVerification {
     public function verify(string $token = null, string $username = null) : VerificationResult {
         $result = new VerificationResult();
 
+        if(!$this->configuration->isEnabled()) {
+            $this->logger->error('Token verification is skipped due to missing configuration! Please configure EXT:power_captcha or remove the field from this form.');
+            $result->setSuccess(true);
+            return $result;
+        }
+
         if(is_null($token)) {
             $token = $this->getTokenFromRequest();
             if(empty($token)) {
