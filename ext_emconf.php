@@ -1,8 +1,8 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'POWER CAPTCHA TYPO3 Integration',
-    'description' => 'POWER CAPTCHA protects your TYPO3 forms (EXT:form and EXT:powermail) against bots and unauthorized persons. GDPR compliant!',
+    'title' => 'POWER CAPTCHA Integration for TYPO3',
+    'description' => 'POWER CAPTCHA protects your TYPO3 forms against bots and unauthorized persons. GDPR compliant!',
     'category' => 'plugin',
     'author' => 'POWER CAPTCHA',
     'version' => '0.1',

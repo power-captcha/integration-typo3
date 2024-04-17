@@ -1,13 +1,13 @@
 {
     "name": "power-captcha/integration-typo3",
-    "description": "POWER CAPTCHA protects your TYPO3 website against bots and unauthorized persons. GDPR compliant!",
+    "description": "POWER CAPTCHA protects your TYPO3 forms against bots and unauthorized persons. GDPR compliant!",
     "type": "typo3-cms-extension",
-    "homepage": "https://power-captcha.com",
+    "homepage": "https://power-captcha.com/en",
     "license": [
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^11.5 || ^12.0"
+        "typo3/cms-core": "^11.5 || ^12.4"
     },
     "suggest": {
 		"in2code/powermail": "Support for EXT:powermail",
