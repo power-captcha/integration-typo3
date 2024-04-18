@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PowerCaptcha\Typo3\PowermailValidator;
 
 use PowerCaptcha\Typo3\Service\TokenVerification;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Error\Error;
@@ -54,6 +55,14 @@ class PowermailV10Validator extends AbstractPowermailValidator
     }
 
     private function getLanguageService() : LanguageService {
-        return $GLOBALS['LANG'];
+        // based on https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/HowTo/Localization/Php.html#localization-without-context
+        $languageServiceFactory = GeneralUtility::makeInstance(
+            LanguageServiceFactory::class,
+        );
+        $request = $GLOBALS['TYPO3_REQUEST'];
+        return $languageServiceFactory->createFromSiteLanguage(
+            $request->getAttribute('language')
+            ?? $request->getAttribute('site')->getDefaultLanguage(),
+        );
     }
 }
