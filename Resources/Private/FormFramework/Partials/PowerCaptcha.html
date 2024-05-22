@@ -11,74 +11,34 @@
                 <f:asset.script defer="1" async="1" identifier="powercaptcha" src="<f:format.htmlspecialchars>{conf.javascriptUrl}</f:format.htmlspecialchars>" />
 
                 <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
+                    <div 
+                        data-pc-sitekey="<f:format.htmlspecialchars>{conf.apiKey}</f:format.htmlspecialchars>" 
+                        data-pc-endpoint="<f:format.htmlspecialchars>{conf.endpointUrl}</f:format.htmlspecialchars>"
+                        data-pc-client-uid="<f:format.htmlspecialchars>{conf.clientUid}</f:format.htmlspecialchars>"
+                        data-pc-lang="<f:format.htmlspecialchars>{conf.lang}</f:format.htmlspecialchars>"
+                        data-pc-debug="<f:format.htmlspecialchars>{conf.debugMode}</f:format.htmlspecialchars>"
+                    ></div>
+
 					<f:form.hidden
 						property="{element.identifier}"
 						id="{element.uniqueIdentifier}"
 						value="1"
 						additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
 					/>
-					<script>
-                        function awaitPowerCaptcha(callbackFn) {
-							const readyCheck = () => {
-								if (window['uiiCaptcha'] !== undefined) {
-									clearInterval(checkInterval);
-									callbackFn(window['uiiCaptcha']);
-								}
-							};
-							const checkInterval = setInterval(readyCheck, 200);
-						}
 
-						document.addEventListener('DOMContentLoaded', function () {
-
-                            const fieldId = '<f:format.htmlspecialchars>{element.uniqueIdentifier}</f:format.htmlspecialchars>';
-                            const form = document.getElementById(fieldId).closest('form');
-                            const formSubmitButton = form.querySelector('[type="submit"]');
-
-                            const clientUid = '<f:format.htmlspecialchars>{conf.clientUid}</f:format.htmlspecialchars>';
-                            const endpointUrl = '<f:format.htmlspecialchars>{conf.endpointUrl}</f:format.htmlspecialchars>';
-                            const apiKey = '<f:format.htmlspecialchars>{conf.apiKey}</f:format.htmlspecialchars>';
-                            const lang = '<f:format.htmlspecialchars>{conf.lang}</f:format.htmlspecialchars>';
-
-                            // append hidden input for token
-                            const tokenField = document.createElement("input");
-                            tokenField.name = "pc-token";
-                            tokenField.type = "hidden";
-                            form.appendChild(tokenField);
-
-                            // create captcha instance
-                            awaitPowerCaptcha((powerCaptcha) => {
-                                const captchaInstance = powerCaptcha.captcha({idSuffix: fieldId, lang: lang});
-                                form.addEventListener('submit', event => {
-                                    if(tokenField.value === "") {
-                                        console.debug('pc-token field empty. preventing form submit and requesting token.');
-                                        event.preventDefault();
-
-                                        // requesting token
-                                        captchaInstance.check({
-                                            apiKey: apiKey,
-                                            backendUrl: endpointUrl,
-                                            clientUid: clientUid,
-                                            user: '',
-                                            callback: ''
-                                        }, 
-                                        function(token) {
-                                            console.debug('captcha solved with token: '+token+'. setting value to tokenField.');
-                                            tokenField.value = token;
-                                            console.debug('resubmitting form.');
-                                            if(formSubmitButton) {
-                                                formSubmitButton.click();
-                                            } else {
-                                                form.submit();
-                                            }
-                                        });
-                                    } else {
-                                        console.debug('pc-token already set. no token has to be requested. wcLoginForm can be submitted.');
-                                    }
-                                });
-                            });
-                        });
-                    </script>
                 </f:render>
+				<script>
+					document.addEventListener("PowerCaptchaReady", (event) => {
+						const captcha = event.detail.captcha;
+						const form = captcha.formElement;
+						form.addEventListener('submit', (event) => {
+							if(captcha.checkValidity() === false) {
+								// prevent submit if checkValidity is false
+								event.preventDefault(); 
+							}
+						});
+					});
+				</script>
             </f:then>
             <f:else>
                 <p>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.disabled_missing_configuration')}</p>

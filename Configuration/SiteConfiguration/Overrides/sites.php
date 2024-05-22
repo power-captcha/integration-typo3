@@ -46,6 +46,15 @@ call_user_func(
             ],
         ];
 
+        // Debug mode
+        $GLOBALS['SiteConfiguration']['site']['columns']['power_captcha_debug_mode'] = [
+            'label' => $lll . 'site.configuration.debug_mode',
+            'description' => $lll . 'site.configuration.debug_mode.description',
+            'config' => [
+                'type' => 'check',
+            ],
+        ];
+
         // add all to showitem
         $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= 
             ',--div--;' 
@@ -54,6 +63,7 @@ call_user_func(
             . 'power_captcha_secret_key,'
             . 'power_captcha_endpoint_base_url,'
             . 'power_captcha_javascript_base_url,'
+            . 'power_captcha_debug_mode,'
         ;
 
     }
