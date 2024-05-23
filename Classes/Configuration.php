@@ -16,7 +16,7 @@ class Configuration
     private const DEFAULT_JAVASCRIPT_BASE_URL = 'https://cdn.power-captcha.com';
     
     private const API_VERSION = 'v1';
-    private const JS_VERSION = '1.2.0-beta';
+    private const JS_VERSION = '1.2.0';
 
     protected string $apiKey = '';
     protected string $secretKey = '';
