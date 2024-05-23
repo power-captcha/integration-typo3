@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <script>
+            <f:asset.script identifier="powercaptcha-ext-powermail">
                 // create custom powermail validator for valdiationCheckbox
                 // see https://github.com/in2code-de/powermail/blob/develop/Documentation/ForDevelopers/WriteOwnValidators.md
                 // see https://github.com/in2code-de/powermail/blob/develop/Resources/Private/Build/JavaScript/FormValidation.js
@@ -33,7 +33,7 @@
                         captcha.validationCheckbox.setAttribute('data-powermail-powercaptcha', ''); 
                         captcha.validationCheckbox.setAttribute('data-powermail-errors-container', '.powermail-powercaptcha-errors-container'); 
                         captcha.validationCheckbox.setAttribute(
-                            'data-powermail-error-message', 
+                            'data-powermail-powercaptcha-message', 
                             "<f:format.htmlspecialchars>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.invalid')}</f:format.htmlspecialchars>"
                         ); 
 
@@ -50,7 +50,7 @@
                         });
                     });
                 });
-            </script>
+            </f:asset.script>
         </f:then>
         <f:else>
             <p>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.disabled_missing_configuration')}</p>

@@ -27,10 +27,14 @@
 					/>
 
                 </f:render>
-				<script>
+				<f:asset.script identifier="powercaptcha-ext-form">
 					document.addEventListener("PowerCaptchaReady", (event) => {
 						const captcha = event.detail.captcha;
 						const form = captcha.formElement;
+						if(form.classList.contains('powermail_form')) {
+							// exclude powermail_forms
+							return;
+						}
 						form.addEventListener('submit', (event) => {
 							if(captcha.checkValidity() === false) {
 								// prevent submit if checkValidity is false
@@ -38,7 +42,7 @@
 							}
 						});
 					});
-				</script>
+				</f:asset.script>
             </f:then>
             <f:else>
                 <p>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.disabled_missing_configuration')}</p>
