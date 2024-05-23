@@ -1,71 +1,91 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-	<file source-language="en" date="2024-04-11T12:13:05+01:00">
+	<file source-language="en" target-language="de" date="2024-05-20T14:45:04+01:00">
 		<body>
 			<!-- Site Configuration -->
 			<trans-unit id="site.configuration.tab">
 				<source>POWER CAPTCHA</source>
+                <target>POWER CAPTCHA</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.api_key">
 				<source>API Key (mandatory)</source>
+                <target>API-Key (erforderlich)</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.api_key.description">
 				<source>Enter your POWER CAPTCHA API Key. You can find your API Key in the API Key Management on power-captcha.com.</source>
+                <target>Gib deinen POWER CAPTCHA API-Key ein. Den API-Key findest du im Mein Konto-Breich auf power-captcha.com.</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.secret_key">
 				<source>Secret Key (mandatory)</source>
+				<target>Secret-Key (erforderlich)</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.secret_key.description">
 				<source>Enter your POWER CAPTCHA Secret Key. You can find your Secret Key in the API Key Management on power-captcha.com.</source>
+				<target>Gib deinen POWER CAPTCHA Secret-Key ein. Den Secret-Key findest du im Mein Konto-Breich auf power-captcha.com.</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.endpoint_base_url">
 				<source>Endpoint base URL (optional)</source>
+                <target>Basis-URL des Endpunktes (optional)</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.endpoint_base_url.description">
 				<source>Only needed if you have an on-premises version with self-hosted POWER CAPTCHA endpoint.</source>
+                <target>Nur erforderlich, wenn du eine On-Premises-Lösung mit selbst gehostetem POWER CAPTCHA Endpunkt hast.</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.javascript_base_url">
 				<source>JavaScript base URL (optional)</source>
+                <target>JavaScript Basis-URL (optional)</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.javascript_base_url.description">
 				<source>Only needed if you have an on-premises version with self-hosted POWER CAPTCHA JavaScript.</source>
+                <target>Nur erforderlich, wenn du eine On-Premises-Lösung mit selbst gehostetem POWER CAPTCHA-JavaScript hast.</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.debug_mode">
 				<source>Debug mode (optional)</source>
+                <target>Debug-Modus (optional)</target>
 			</trans-unit>
 			<trans-unit id="site.configuration.debug_mode.description">
 				<source>Debug mode enables the log output in the browser console.</source>
+                <target>Der Debug-Modus aktiviert die Log-Ausgabe in der Browser-Konsole.</target>
 			</trans-unit>
 
 			<!-- Frontend -->
 			<trans-unit id="message.blocked">
 				<source>Submission of the form was blocked by POWER CAPTCHA. Please try again later.</source>
+				<target>Das Absenden des Formulars wurde durch POWER CAPTCHA blockiert. Bitte versuche es später erneut.</target>
 			</trans-unit>
 			<trans-unit id="message.invalid">
 				<source>Security check must be confirmed!</source>
+				<target>Sicherheitsprüfung muss bestätigt werden!</target>
 			</trans-unit>
 			<trans-unit id="message.disabled_missing_configuration">
 				<source>Warning: POWER CAPTCHA is disabled due to missing configuration! Please configure POWER CAPTCHA or remove the field from this form.</source>
+				<target>Achtung: POWER CAPTCHA ist aufgrund einer fehlenden Konfiguration deaktiviert! Bitte konfiguriere POWER CAPTCHA oder entferne das Feld aus diesem Formular.</target>
 			</trans-unit>
 
 			<!-- Error Codes -->
 			<trans-unit id="message.error.no_token_field">
 				<source>The form does not contain a token field.</source>
+				<target>Das Formular enthält kein Token-Feld.</target>
 			</trans-unit>
 			<trans-unit id="message.error.missing_token">
 				<source>The token is empty.</source>
+                <target></target>
 			</trans-unit>
 			<trans-unit id="message.error.token_not_verified">
 				<source>The token has not been verified.</source>
+                <target>Das Token ist leer.</target>
 			</trans-unit>
 			<trans-unit id="message.error.invalid_secret">
 				<source>The secret key is missing or invalid.</source>
+                <target>Der Secret-Key fehlt oder ist ungültig.</target>
 			</trans-unit>
 			<trans-unit id="message.error.invalid_token">
 				<source>The token is invalid.</source>
+                <target>Das Token ist ungültig.</target>
 			</trans-unit>
 			<trans-unit id="message.error.api_error">
 				<source>Error connecting to the API. API Key maybe invalid.</source>
+                <target>Fehler beim Verbinden mit der API. Der API-Key ist möglicherweise ungültig.</target>
 			</trans-unit>
 		</body>
 	</file>

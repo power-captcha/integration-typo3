@@ -43,6 +43,8 @@ TYPO3:
                   renderingOptions:
                     enabled: false
                   condition: 'stepType == "SummaryPage" || finisherIdentifier in ["EmailToSender", "EmailToReceiver"]'
+                  properties:
+                    containerClassAttribute: 'form-element form-element-check mb-3'
 
               # Headline (appears as a title in the overview and above the form)
               formEditor:

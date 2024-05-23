@@ -16,12 +16,13 @@ class Configuration
     private const DEFAULT_JAVASCRIPT_BASE_URL = 'https://cdn.power-captcha.com';
     
     private const API_VERSION = 'v1';
-    private const JS_VERSION = '1.1.0';
+    private const JS_VERSION = '1.2.0';
 
     protected string $apiKey = '';
     protected string $secretKey = '';
     protected string $endpointBaseUrl = '';
     protected string $javascriptBaseUrl = '';
+    protected string $debugMode = 'false';
 
     public function __construct(Site $site = null) {
         if ($site === null) {
@@ -36,6 +37,7 @@ class Configuration
         $this->secretKey = trim($siteConfiguration['power_captcha_secret_key'] ?? '');
         $this->endpointBaseUrl = trim($siteConfiguration['power_captcha_endpoint_base_url'] ?? '');
         $this->javascriptBaseUrl = trim($siteConfiguration['power_captcha_javascript_base_url'] ?? '');
+        $this->debugMode = $siteConfiguration['power_captcha_debug_mode'] ? 'true' : 'false';
     }
 
     public function getClientUid() {
@@ -86,4 +88,7 @@ class Configuration
         return $this->getJavascriptBaseUrl() . '/' . self::API_VERSION . '/power-captcha-' . self::JS_VERSION . '.min.js';
     }
 
+    public function getDebugMode() : string {
+        return $this->debugMode;
+    }
 }
