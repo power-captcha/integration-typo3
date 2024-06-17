@@ -37,7 +37,7 @@ class Configuration
         $this->secretKey = trim($siteConfiguration['power_captcha_secret_key'] ?? '');
         $this->endpointBaseUrl = trim($siteConfiguration['power_captcha_endpoint_base_url'] ?? '');
         $this->javascriptBaseUrl = trim($siteConfiguration['power_captcha_javascript_base_url'] ?? '');
-        $this->debugMode = $siteConfiguration['power_captcha_debug_mode'] ? 'true' : 'false';
+        $this->debugMode = ($siteConfiguration['power_captcha_debug_mode'] ?? false) ? 'true' : 'false';
     }
 
     public function getClientUid() {
