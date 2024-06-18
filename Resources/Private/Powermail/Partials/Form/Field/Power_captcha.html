@@ -6,7 +6,7 @@
 
     <f:if condition="{conf.enabled}">
         <f:then>
-            <f:asset.script defer="1" async="1" identifier="powercaptcha" src="<f:format.htmlspecialchars>{conf.javascriptUrl}</f:format.htmlspecialchars>" />
+            <f:asset.script defer="1" identifier="powercaptcha" src="<f:format.htmlspecialchars>{conf.javascriptUrl}</f:format.htmlspecialchars>" />
             <div class="powermail_fieldwrap powermail_fieldwrap_type_check powermail_fieldwrap_{field.marker} {field.css} {settings.styles.framework.fieldAndLabelWrappingClasses}">
                 <div class="{settings.styles.framework.fieldWrappingClasses}">
                     <div 
@@ -21,34 +21,38 @@
                 </div>
             </div>
 
-            <f:asset.script identifier="powercaptcha-ext-powermail">
+            <f:asset.script defer="1" identifier="powercaptcha-ext-powermail">
                 // create custom powermail validator for valdiationCheckbox
                 // see https://github.com/in2code-de/powermail/blob/develop/Documentation/ForDevelopers/WriteOwnValidators.md
                 // see https://github.com/in2code-de/powermail/blob/develop/Resources/Private/Build/JavaScript/FormValidation.js
-                document.querySelectorAll('.powermail_form').forEach(function (form) {
-                    form.addEventListener("PowerCaptchaReady", (event) => {
-                        const captcha = event.detail.captcha;
+                document.addEventListener("PowerCaptchaReady", (event) => {
+                    const captcha = event.detail.captcha;
+                    const form = captcha.formElement;
 
-                        // modifying captcha validationCheckbox to get powermail validation work
-                        captcha.validationCheckbox.required = false; // remove required from valditionCheckbox to disable the powermail default required-validator
-                        captcha.validationCheckbox.setAttribute('data-powermail-powercaptcha', ''); 
-                        captcha.validationCheckbox.setAttribute('data-powermail-errors-container', '.powermail-powercaptcha-errors-container'); 
-                        captcha.validationCheckbox.setAttribute(
-                            'data-powermail-powercaptcha-message', 
-                            "<f:format.htmlspecialchars>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.invalid')}</f:format.htmlspecialchars>"
-                        ); 
+                    if(!form.classList.contains('powermail_form')) {
+                        // exclude non powermail forms
+                        return;
+                    }
 
-                        const formValidation = form.powermailFormValidation;
-                        formValidation.addValidator('powercaptcha', function(field) {
-                            if (field == captcha.validationCheckbox) {
-                                const isInvalid = !captcha.isValid();
-                                if(isInvalid) {
-                                    captcha.showInvalid();
-                                }
-                                // return true means validation has failed
-                                return isInvalid;
+                    // modifying captcha validationCheckbox to get powermail validation work
+                    captcha.validationCheckbox.required = false; // remove required from valditionCheckbox to disable the powermail default required-validator
+                    captcha.validationCheckbox.setAttribute('data-powermail-powercaptcha', ''); 
+                    captcha.validationCheckbox.setAttribute('data-powermail-errors-container', '.powermail-powercaptcha-errors-container'); 
+                    captcha.validationCheckbox.setAttribute(
+                        'data-powermail-powercaptcha-message', 
+                        "<f:format.htmlspecialchars>{f:translate(key:'LLL:EXT:power_captcha/Resources/Private/Language/locallang.xlf:message.invalid')}</f:format.htmlspecialchars>"
+                    ); 
+
+                    const formValidation = form.powermailFormValidation;
+                    formValidation.addValidator('powercaptcha', function(field) {
+                        if (field == captcha.validationCheckbox) {
+                            const isInvalid = !captcha.isValid();
+                            if(isInvalid) {
+                                captcha.showInvalid();
                             }
-                        });
+                            // return true means validation has failed
+                            return isInvalid;
+                        }
                     });
                 });
             </f:asset.script>
