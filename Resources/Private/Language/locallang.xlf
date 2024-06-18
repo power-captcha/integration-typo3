@@ -18,6 +18,26 @@
 			<trans-unit id="site.configuration.secret_key.description">
 				<source>Enter your POWER CAPTCHA Secret Key. You can find your Secret Key in the API Key Management on power-captcha.com.</source>
 			</trans-unit>
+			<trans-unit id="site.configuration.check_mode">
+				<source>Check mode (optional)</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.description" xml:space="preserve">
+				<source>Configure the display of the widget and the behaviour of the security check. 
+				There are three options:
+				• Automatic (default): The widget is always displayed and the security check is started automatically as soon as the form is filled in or after the corresponding field (e.g. user name or email address) has been filled in. A click on the checkbox in the widget is only necessary if it is required to solve a captcha.
+				• Hidden: The widget is not displayed initially and the security check is started automatically as soon as the form is filled in or after the corresponding field (e.g. user name or e-mail address) has been filled in. The widget is only displayed if it is required to solve a captcha.
+				• Manual: The widget is always displayed and the security check is only started when the checkbox in the widget is clicked.
+				</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.item.auto">
+				<source>Automatic</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.item.hidden">
+				<source>Hidden</source>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.item.manu">
+				<source>Manual</source>
+			</trans-unit>
 			<trans-unit id="site.configuration.endpoint_base_url">
 				<source>Endpoint base URL (optional)</source>
 			</trans-unit>
