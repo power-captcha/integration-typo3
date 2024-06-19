@@ -23,6 +23,36 @@
 				<source>Enter your POWER CAPTCHA Secret Key. You can find your Secret Key in the API Key Management on power-captcha.com.</source>
 				<target>Gib deinen POWER CAPTCHA Secret-Key ein. Den Secret-Key findest du im Mein Konto-Breich auf power-captcha.com.</target>
 			</trans-unit>
+			<trans-unit id="site.configuration.check_mode">
+				<source>Check mode (optional)</source>
+				<target>Prüfmodus (optional)</target>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.description" xml:space="preserve">
+				<source>Configure the display of the widget and the behaviour of the security check. 
+				There are three options:
+				• Automatic (default): The widget is always displayed and the security check is started automatically as soon as the form is filled in or after the corresponding field (e.g. user name or email address) has been filled in. A click on the checkbox in the widget is only necessary if it is required to solve a captcha.
+				• Hidden: The widget is not displayed initially and the security check is started automatically as soon as the form is filled in or after the corresponding field (e.g. user name or e-mail address) has been filled in. The widget is only displayed if it is required to solve a captcha.
+				• Manual: The widget is always displayed and the security check is only started when the checkbox in the widget is clicked.
+				</source>
+				<target>Konfiguriere die Anzeige des Widgets und das Verhalten der Sicherheitsprüfung.
+				Es gibt drei Optionen:
+				• Automatisch (Standard): Das Widget wird immer angezeigt und die Sicherheitsprüfung wird automatisch gestartet, sobald das Formular ausgefüllt wird oder nachdem das entsprechende Feld (z.B. Benutzername oder E-Mail-Adresse) ausgefüllt wurde. Ein Klick auf die Checkbox im Widget ist nur notwendig, wenn ein Captcha gelöst werden muss.
+				• Versteckt: Das Widget wird zunächst nicht angezeigt und die Sicherheitsprüfung wird automatisch gestartet, sobald das Formular ausgefüllt wird oder nachdem das entsprechende Feld (z. B. Benutzername oder E-Mail-Adresse) ausgefüllt wurde. Das Widget wird nur eingeblendet, wenn ein Captcha gelöst werden muss.
+				• Manuell: Das Widget wird immer angezeigt, und die Sicherheitsprüfung wird erst gestartet, wenn auf die Checkbox im Widget geklickt wird.
+				</target>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.item.auto">
+				<source>Automatic</source>
+				<target>Automatisch</target>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.item.hidden">
+				<source>Hidden</source>
+				<target>Versteckt</target>
+			</trans-unit>
+			<trans-unit id="site.configuration.check_mode.item.manu">
+				<source>Manual</source>
+				<target>Manuell</target>
+			</trans-unit>
 			<trans-unit id="site.configuration.endpoint_base_url">
 				<source>Endpoint base URL (optional)</source>
                 <target>Basis-URL des Endpunktes (optional)</target>

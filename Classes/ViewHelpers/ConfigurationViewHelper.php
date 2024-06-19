@@ -28,6 +28,7 @@ class ConfigurationViewHelper extends AbstractViewHelper {
 			'apiKey' => $configuration->getApiKey(),
             'endpointUrl' => $configuration->getTokenRequestUrl(),
 			'javascriptUrl' => $configuration->getJavascriptUrl(),
+            'checkMode' => $configuration->getCheckMode(),
 			'debugMode' => $configuration->getDebugMode(),
 		];
     }

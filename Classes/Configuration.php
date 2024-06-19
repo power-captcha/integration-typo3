@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerCaptcha\Typo3;
 
+use phpDocumentor\Reflection\Types\Integer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -16,10 +17,11 @@ class Configuration
     private const DEFAULT_JAVASCRIPT_BASE_URL = 'https://cdn.power-captcha.com';
     
     private const API_VERSION = 'v1';
-    private const JS_VERSION = '1.2.0';
+    private const JS_VERSION = '1.2.2';
 
     protected string $apiKey = '';
     protected string $secretKey = '';
+    protected string $checkMode = '';
     protected string $endpointBaseUrl = '';
     protected string $javascriptBaseUrl = '';
     protected string $debugMode = 'false';
@@ -35,9 +37,10 @@ class Configuration
         $siteConfiguration = $site->getConfiguration();
         $this->apiKey = trim($siteConfiguration['power_captcha_api_key'] ?? '');
         $this->secretKey = trim($siteConfiguration['power_captcha_secret_key'] ?? '');
+        $this->checkMode = $siteConfiguration['power_captcha_check_mode'] ?? '';
         $this->endpointBaseUrl = trim($siteConfiguration['power_captcha_endpoint_base_url'] ?? '');
         $this->javascriptBaseUrl = trim($siteConfiguration['power_captcha_javascript_base_url'] ?? '');
-        $this->debugMode = $siteConfiguration['power_captcha_debug_mode'] ? 'true' : 'false';
+        $this->debugMode = ($siteConfiguration['power_captcha_debug_mode'] ?? false) ? 'true' : 'false';
     }
 
     public function getClientUid() {
@@ -58,6 +61,10 @@ class Configuration
 
     public function getSecretKey() : string {
         return $this->secretKey;
+    }
+
+    public function getCheckMode() : string {
+        return in_array($this->checkMode, ['auto', 'hidden', 'manu']) ? $this->checkMode : 'auto';
     }
 
     private function getEndpointBaseUrl() : string {
